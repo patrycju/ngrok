@@ -45,6 +45,7 @@ type Options struct {
 	protocol  string
 	subdomain string
 	command   string
+	remoteport string
 	args      []string
 }
 
@@ -95,6 +96,11 @@ func ParseArgs() (opts *Options, err error) {
 		"http+https",
 		"The protocol of the traffic over the tunnel {'http', 'https', 'tcp'} (default: 'http+https')")
 
+	remoteport := flag.String(
+		"remoteport",
+		"0",
+		"The port of the remote tunnel connection (default: '0')")
+
 	flag.Parse()
 
 	opts = &Options{
@@ -106,6 +112,7 @@ func ParseArgs() (opts *Options, err error) {
 		protocol:  *protocol,
 		authtoken: *authtoken,
 		hostname:  *hostname,
+		remoteport: *remoteport,
 		command:   flag.Arg(0),
 	}
 

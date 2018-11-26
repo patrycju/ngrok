@@ -186,7 +186,7 @@ func (c *ClientModel) update() {
 
 func (c *ClientModel) Run() {
 	// how long we should wait before we reconnect
-	maxWait := 30 * time.Second
+	maxWait := 5 * time.Second
 	wait := 1 * time.Second
 
 	for {
