@@ -143,11 +143,12 @@ func LoadConfiguration(opts *Options) (config *Configuration, err error) {
 	// start a single tunnel, the default, simple ngrok behavior
 	case "default":
 		config.Tunnels = make(map[string]*TunnelConfiguration)
+		i, _ := strconv.ParseUint(opts.remoteport, 10, 16)
 		config.Tunnels["default"] = &TunnelConfiguration{
 			Subdomain:  opts.subdomain,
 			Hostname:   opts.hostname,
 			HttpAuth:   opts.httpauth,
-			RemotePort: opts.remoteport,
+			RemotePort: uint16(i),
 			Protocols:  make(map[string]string),
 		}
 
